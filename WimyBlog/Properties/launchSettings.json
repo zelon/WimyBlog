@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "wimyblog": {
+      "commandName": "Project",
+      "commandLineArgs": "E:\\git\\test_web"
+    }
+  }
+}
