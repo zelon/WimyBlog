@@ -21,8 +21,21 @@ namespace WimyBlog
             System.Diagnostics.Debug.Assert(File.Exists(filename));
             var file_stream = File.OpenRead(filename);
             var xml_document = new XmlDocument();
-            xml_document.Load(file_stream);
+            try
+            {
+                xml_document.Load(file_stream);
+            } catch (XmlException exception)
+            {
+                var new_exception = new MetadataReaderException(exception.Message + " filename: " + filename);
+                throw new_exception;
+            }
             Parse(xml_document);
+        }
+
+        public class MetadataReaderException : XmlException {
+            public MetadataReaderException(string msg) : base(msg)
+            {
+            }
         }
 
         private void Parse(XmlDocument xml_document)
