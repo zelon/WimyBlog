@@ -23,7 +23,8 @@ namespace WimyBlog
             List<Post> posts = post_collector.Collect();
             ValidatePosts(posts);
 
-            ExportIndexHtmlFiles(posts);
+            Console.WriteLine("Exporting index.html files...");
+            new HtmlExporter(posts, config).Export();
 
             Console.WriteLine("Exporting page lists...");
             new PageListExporter(posts, config).Export();
@@ -49,11 +50,6 @@ namespace WimyBlog
                     Environment.Exit(1);
                 }
             }
-        }
-
-        private static void ExportIndexHtmlFiles(List<Post> posts)
-        {
-            //throw new NotImplementedException();
         }
     }
 }
