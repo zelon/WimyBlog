@@ -76,7 +76,7 @@ namespace WimyBlog
 
             item_node.AppendChild(CreateElement("title", HtmlEncode(post.Title)));
             item_node.AppendChild(CreateElement("link", config_.SiteBaseUrl + post.Id));
-            item_node.AppendChild(CreateElement("description", HtmlEncode(post.HtmlContent)));
+            item_node.AppendChild(CreateElement("description", post.HtmlContent));
             item_node.AppendChild(CreateElement("guid", config_.SiteBaseUrl + post.Id));
             item_node.AppendChild(CreateElement("pubDate", post.CreatedTime.ToString(config_.DateTimeFormat)));
 
@@ -92,7 +92,8 @@ namespace WimyBlog
 
         private string HtmlEncode(string value)
         {
-            return System.Net.WebUtility.HtmlEncode(value);
+            string test = System.Net.WebUtility.HtmlEncode(value);
+            return test;
         }
     }
 }
