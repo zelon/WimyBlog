@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace WimyBlog
 {
@@ -48,21 +49,56 @@ namespace WimyBlog
                 string output_filename = Path.Combine(output_directory_name, "index.html");
                 using (var stream = File.CreateText(output_filename))
                 {
-                    string output = CreatePageBody(posts, current_page_count, total_page_count);
+                    string output = CreateBody(posts, current_page_count, total_page_count);
                     stream.Write(output);
                 }
             }
         }
 
-        private static string CreatePageBody(List<Post> posts,
-                                             int current_page_count,
-                                             int total_page_count)
+        private string CreateBody(List<Post> posts, int current_page_count, int total_page_count)
         {
-            string output = string.Format("page {0}:", current_page_count);
+            Debug.Assert(current_page_count >= 1);
+
+            string body = "";
             foreach (var post in posts)
             {
-                output += " " + post.Id;
+                body += string.Format("<p><a href='/{0}'>{1}</a></p>", post.Id, post.Title);
+                body += System.Environment.NewLine;
             }
+
+            body += "<p align='center'>";
+            if (current_page_count > 1)
+            {
+                body += string.Format("<a href='../{0}'>&lt;&lt;</a>", current_page_count - 1);
+            }
+            else
+            {
+                body += string.Format("&lt;&lt;");
+            }
+            body += "&nbsp;&nbsp;&nbsp;&nbsp;";
+            if (current_page_count < total_page_count)
+            {
+                body += string.Format("<a href='../{0}'>&gt;&gt;</a>", current_page_count + 1);
+            }
+            else
+            {
+                body += string.Format("&gt;&gt;");
+            }
+            body += "</p>";
+
+
+            string layout_filename = Path.Combine(config_.RootDirectory, "layout_post.html");
+            string layout;
+            using (var stream = File.OpenText(layout_filename))
+            {
+                layout = stream.ReadToEnd();
+            }
+            string output = layout;
+
+            output = output.Replace("<!--wimyblog:title-->",
+                                    string.Format("<a href=\".\">{0}</a>", current_page_count));
+            output = output.Replace("<!--wimyblog:content-->", body);
+
             return output;
         }
     }
