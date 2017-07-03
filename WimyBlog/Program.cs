@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Xml;
 
 namespace WimyBlog
 {
@@ -28,6 +27,9 @@ namespace WimyBlog
 
             Console.WriteLine("Exporting page lists...");
             new PageListExporter(posts, config).Export();
+
+            Console.WriteLine("Exporting front page...");
+            new FrontPageExporter(posts, config).Export();
 
             Console.WriteLine("Exporting rss...");
             new RssExporter(posts, config).Export();
