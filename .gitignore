@@ -1,3 +1,8 @@
 source/obj/
 source/bin/
 .vs/
+.vscode/
+WimyBlog/bin/
+WimyBlog/obj/
+WimyBlogTest/bin/
+WimyBlogTest/obj/
