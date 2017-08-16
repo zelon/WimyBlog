@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WimyBlog", "WimyBlog\WimyBlog.csproj", "{834DEC0B-2196-4CE8-88D8-A868420EE0C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WimyBlogTest", "WimyBlogTest\WimyBlogTest.csproj", "{2CDB00B8-63C0-4398-8707-6907306F9E26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WimyBlogTest", "WimyBlogTest\WimyBlogTest.csproj", "{2CDB00B8-63C0-4398-8707-6907306F9E26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebServer", "TestWebServer\TestWebServer.csproj", "{3BADF158-9920-4A1A-B93C-5758D9F7AA76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{2CDB00B8-63C0-4398-8707-6907306F9E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CDB00B8-63C0-4398-8707-6907306F9E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CDB00B8-63C0-4398-8707-6907306F9E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BADF158-9920-4A1A-B93C-5758D9F7AA76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BADF158-9920-4A1A-B93C-5758D9F7AA76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BADF158-9920-4A1A-B93C-5758D9F7AA76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BADF158-9920-4A1A-B93C-5758D9F7AA76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51560816-91BA-48F1-9D0A-EED6B359ADC2}
 	EndGlobalSection
 EndGlobal

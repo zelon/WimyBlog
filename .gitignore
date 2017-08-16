@@ -6,3 +6,5 @@ WimyBlog/bin/
 WimyBlog/obj/
 WimyBlogTest/bin/
 WimyBlogTest/obj/
+TestWebServer/obj/
+*.swp
