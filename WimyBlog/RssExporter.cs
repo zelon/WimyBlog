@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Xml;
 
 // online validator: http://www.feedvalidator.org
@@ -55,7 +53,7 @@ namespace WimyBlog
 
         public void Export()
         {
-            using (var stream = File.CreateText(Path.Combine(config_.RootDirectory, "rss.xml")))
+            using (var stream = File.CreateText(Path.Combine(config_.RootDirectory, "rss", "index.xml")))
             {
                 document_.Save(stream);
             }
