@@ -23,7 +23,9 @@ namespace TestWebServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseDefaultFiles();
+            DefaultFilesOptions default_files_options = new DefaultFilesOptions();
+            default_files_options.DefaultFileNames.Add("index.xml");
+            app.UseDefaultFiles(default_files_options);
             app.UseStaticFiles();
         }
     }
