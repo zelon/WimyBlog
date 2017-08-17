@@ -62,7 +62,8 @@ namespace WimyBlog
             string body = "";
             foreach (var post in posts)
             {
-                body += string.Format("<p><a href='/{0}'>{1}</a></p>", post.Id, post.Title);
+                body += string.Format("<p><a href='/{0}'>{1}&nbsp;&nbsp;&nbsp;{2}</a></p>",
+                                      post.Id, post.CreatedTime.ToString("yyyy-MM-dd"), post.Title);
                 body += System.Environment.NewLine;
             }
 
