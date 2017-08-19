@@ -53,6 +53,7 @@ namespace WimyBlog
 
         public void Export()
         {
+            Directory.CreateDirectory(Path.Combine(config_.RootDirectory, "rss"));
             using (var stream = File.CreateText(Path.Combine(config_.RootDirectory, "rss", "index.xml")))
             {
                 document_.Save(stream);
