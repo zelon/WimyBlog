@@ -23,6 +23,7 @@ namespace WimyBlog
             {
                 converted_content = stream.ReadToEnd();
             }
+            File.Delete(temp_filename);
             return converted_content.Trim();
         }
 
