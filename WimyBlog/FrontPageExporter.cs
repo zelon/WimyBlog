@@ -48,13 +48,7 @@ namespace WimyBlog
                 body += System.Environment.NewLine;
             }
 
-            string layout_filename = Path.Combine(config_.RootDirectory, "layout_post.html");
-            string layout;
-            using (var stream = File.OpenText(layout_filename))
-            {
-                layout = stream.ReadToEnd();
-            }
-            string output = layout;
+            string output = config_.Layout;
             output = output.Replace("<!--wimyblog:content-->", body);
             return output;
         }

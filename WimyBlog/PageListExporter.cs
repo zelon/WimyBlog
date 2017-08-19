@@ -87,14 +87,7 @@ namespace WimyBlog
             }
             body += "</p>";
 
-
-            string layout_filename = Path.Combine(config_.RootDirectory, "layout_post.html");
-            string layout;
-            using (var stream = File.OpenText(layout_filename))
-            {
-                layout = stream.ReadToEnd();
-            }
-            string output = layout;
+            string output = config_.Layout;
 
             output = output.Replace("<!--wimyblog:title-->",
                                     string.Format("<a href=\".\">{0}</a>", current_page_count));
