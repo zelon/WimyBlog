@@ -44,7 +44,7 @@ namespace WimyBlog
             foreach (var post in posts_)
             {
                 body += string.Format("<p><a href='/{0}'>{1}&nbsp;&nbsp;&nbsp;{2}</a></p>",
-                                      post.Id, post.CreatedTime.ToString("yyyy-MM-dd"), post.Title);
+                                      post.Id, post.CreatedLocalTime.ToString("yyyy-MM-dd"), post.Title);
                 body += System.Environment.NewLine;
             }
 

@@ -8,7 +8,7 @@ namespace WimyBlog
         public int Id { get; private set; }
         public string Title { get; private set; }
         public string HtmlContent { get; private set; }
-        public DateTime CreatedTime { get; private set; }
+        public DateTime CreatedLocalTime { get; private set; }
         public string ContentDirectoryName { get; private set; }
 
         public static Post Convert(string directory_name, Config config)
@@ -21,7 +21,7 @@ namespace WimyBlog
             post.Id = int.Parse(Path.GetFileName(directory_name));
             post.Title = metadata_reader.Title;
             post.HtmlContent = Markdown2Html.Convert(markdown_content);
-            post.CreatedTime = metadata_reader.CreatedTime;
+            post.CreatedLocalTime = metadata_reader.CreatedTime;
             post.ContentDirectoryName = directory_name;
             return post;
         }

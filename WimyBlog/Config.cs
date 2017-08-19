@@ -7,8 +7,9 @@ namespace WimyBlog
     public class Config
     {
         public string Author { get; private set; }
-        public string SiteBaseUrl { get; private set; }
+        public string Title { get; private set; }
         public string BlogDescription { get; private set; }
+        public string SiteBaseUrl { get; private set; }
         public string Layout { get; private set; }
         public string DateTimeFormat { get; private set; }
         public string RootDirectory { get; private set; }
@@ -38,8 +39,9 @@ namespace WimyBlog
 
             config.RootDirectory = base_directory_name;
             config.Author = node["author"].InnerText;
-            config.SiteBaseUrl = node["site_base_url"].InnerText;
+            config.Title = node["title"].InnerText;
             config.BlogDescription = node["blog_description"].InnerText;
+            config.SiteBaseUrl = node["site_base_url"].InnerText;
             config.Layout = LoadLayoutContent(Path.Combine(base_directory_name, node["layout_filename"].InnerText));
             config.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
             config.PostDirectory = Path.Combine(base_directory_name, node["post_directory"].InnerText);

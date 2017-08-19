@@ -39,7 +39,7 @@ namespace WimyBlogTest
             Assert.AreEqual(1, post.Id);
             Assert.AreEqual("Test 타이틀", post.Title);
             Assert.AreEqual("<p>Test 테스트</p>", post.HtmlContent);
-            Assert.AreEqual(DateTime.Parse("2017-06-07 23:25:05").ToBinary(), post.CreatedTime.ToBinary());
+            Assert.AreEqual(DateTime.Parse("2017-06-07 23:25:05").ToBinary(), post.CreatedLocalTime.ToBinary());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
@@ -32,9 +33,10 @@ namespace WimyBlog
             XmlNode channel = document_.CreateElement("channel");
             rss.AppendChild(channel);
 
-            channel.AppendChild(CreateElement("title", config.SiteBaseUrl));
+            channel.AppendChild(CreateElement("title", config.Title));
             channel.AppendChild(CreateElement("link", config.SiteBaseUrl));
             channel.AppendChild(CreateElement("description", HtmlEncode(config.BlogDescription)));
+            channel.AppendChild(CreateElement("pubDate", DateTime.Now.ToUniversalTime().ToString("R")));
             channel.AppendChild(CreateElement("generator", "wimyblog"));
 
             int added_item_count = 0;
@@ -77,7 +79,7 @@ namespace WimyBlog
             item_node.AppendChild(CreateElement("link", config_.SiteBaseUrl + post.Id));
             item_node.AppendChild(CreateElement("description", post.HtmlContent));
             item_node.AppendChild(CreateElement("guid", config_.SiteBaseUrl + post.Id));
-            item_node.AppendChild(CreateElement("pubDate", post.CreatedTime.ToString(config_.DateTimeFormat)));
+            item_node.AppendChild(CreateElement("pubDate", post.CreatedLocalTime.ToUniversalTime().ToString("R")));
 
             return item_node;
         }
