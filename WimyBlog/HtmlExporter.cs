@@ -32,6 +32,8 @@ namespace WimyBlog
 
             output = output.Replace("<!--wimyblog:title-->",
                                     string.Format("<a href=\"/{0}\">{1}</a>", post.Id, post.Title));
+            output = output.Replace("<!--wimyblog:post_datetime-->",
+                                    string.Format("{0}", post.CreatedLocalTime.ToString(config_.DateTimeFormat)));
             output = output.Replace("<!--wimyblog:content-->", post.HtmlContent);
 
             return output;
