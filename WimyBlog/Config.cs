@@ -11,6 +11,7 @@ namespace WimyBlog
         public string BlogDescription { get; private set; }
         public string SiteBaseUrl { get; private set; }
         public string Layout { get; private set; }
+        public string LayoutComment { get; private set; }
         public string DateTimeFormat { get; private set; }
         public string RootDirectory { get; private set; }
         public string PostDirectory { get; private set; }
@@ -42,7 +43,8 @@ namespace WimyBlog
             config.Title = node["title"].InnerText;
             config.BlogDescription = node["blog_description"].InnerText;
             config.SiteBaseUrl = node["site_base_url"].InnerText;
-            config.Layout = LoadLayoutContent(Path.Combine(base_directory_name, node["layout_filename"].InnerText));
+            config.Layout = LoadLayout(Path.Combine(base_directory_name, node["layout_filename"].InnerText));
+            config.LayoutComment = LoadLayout(Path.Combine(base_directory_name, node["layout_comment_filename"].InnerText));
             config.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
             config.PostDirectory = Path.Combine(base_directory_name, node["post_directory"].InnerText);
             config.PageDirectory = Path.Combine(base_directory_name, node["page_directory"].InnerText);
@@ -54,7 +56,7 @@ namespace WimyBlog
             return config;
         }
 
-        private static string LoadLayoutContent (string layout_filename)
+        private static string LoadLayout (string layout_filename)
         {
             if (File.Exists(layout_filename) == false)
             {
@@ -65,6 +67,11 @@ namespace WimyBlog
             {
                 return stream.ReadToEnd();
             }
+        }
+
+        public string GetPostLink(int post_id)
+        {
+            return SiteBaseUrl + post_id.ToString();
         }
     }
 }

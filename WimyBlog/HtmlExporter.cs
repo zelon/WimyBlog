@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Collections.Generic;
 
 namespace WimyBlog
@@ -8,6 +7,7 @@ namespace WimyBlog
     {
         private Config config_;
         private List<Post> posts_;
+
         public HtmlExporter(List<Post> posts, Config config)
         {
             posts_ = posts;
@@ -35,8 +35,19 @@ namespace WimyBlog
             output = output.Replace("<!--wimyblog:post_datetime-->",
                                     string.Format("{0}", post.CreatedLocalTime.ToString(config_.DateTimeFormat)));
             output = output.Replace("<!--wimyblog:content-->", post.HtmlContent);
+            output = output.Replace("<!--wimyblog:comment-->", GetCommentWithLayout(post));
 
             return output;
+        }
+
+        private string GetCommentWithLayout(Post post)
+        {
+            string layout = config_.LayoutComment;
+
+            layout = layout.Replace("<!--wimyblog:comment_url-->", config_.GetPostLink(post.Id));
+            layout = layout.Replace("<!--wimyblog:comment_identifier-->", post.Id.ToString());
+
+            return layout;
         }
     }
 }
