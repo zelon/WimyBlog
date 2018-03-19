@@ -49,6 +49,7 @@ namespace WimyBlog
                 if (string.IsNullOrEmpty(post.Title))
                 {
                     Console.WriteLine("[ERROR] There is no title. Id: {0}", post.Id);
+                    System.Diagnostics.Debug.WriteLine("[ERROR] There is no title. Id: {0}", post.Id);
                     Environment.Exit(1);
                 }
             }
