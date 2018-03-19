@@ -14,7 +14,7 @@ namespace WimyBlog
             }
 
             string converted_filename = Path.GetTempFileName();
-            string cmd = string.Format("pandoc -f markdown_github -t html {0} -o {1}",
+            string cmd = string.Format("pandoc -f gfm+hard_line_breaks -t html {0} -o {1}",
                                        temp_filename, converted_filename);
             ExecuteCommandLine(cmd);
 
