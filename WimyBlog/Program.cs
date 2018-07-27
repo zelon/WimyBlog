@@ -44,12 +44,14 @@ namespace WimyBlog
                 Console.WriteLine("Cannot find any post");
                 Environment.Exit(1);
             }
-            foreach (var post in posts)
+            foreach (Post post in posts)
             {
                 if (string.IsNullOrEmpty(post.Title))
                 {
-                    Console.WriteLine("[ERROR] There is no title. Id: {0}", post.Id);
-                    System.Diagnostics.Debug.WriteLine("[ERROR] There is no title. Id: {0}", post.Id);
+                    string errorMessage = string.Format("[ERROR] There is no title. Id:{0},Directory:{1}",
+                        post.Id, post.ContentDirectoryName);
+                    Console.WriteLine(errorMessage);
+                    System.Diagnostics.Debug.WriteLine(errorMessage);
                     Environment.Exit(1);
                 }
             }
