@@ -30,9 +30,15 @@ namespace WimyBlog
         {
             string output = config_.Layout;
 
-            output = output.Replace("<!--wimyblog:title-->",
-                                    string.Format("<a href=\"/{0}\">{1}</a>", post.Id, post.Title));
-            output = output.Replace("<!--wimyblog:post_datetime-->",
+			output = output.Replace("<!--wimyblog:blog_title-->",
+									string.Format("{0}", config_.Title));
+			output = output.Replace("<!--wimyblog:title-->",
+                                    string.Format("{0}", post.Title));
+			output = output.Replace("<!--wimyblog:post_title_with_link-->",
+									string.Format("<a href=\"/{0}\">{1}</a>", post.Id, post.Title));
+			output = output.Replace("<!--wimyblog:post_title-->",
+									string.Format("{0}", post.Title));
+			output = output.Replace("<!--wimyblog:post_datetime-->",
                                     string.Format("{0}", post.CreatedLocalTime.ToString(config_.DateTimeFormat)));
             output = output.Replace("<!--wimyblog:content-->", post.HtmlContent);
             output = output.Replace("<!--wimyblog:comment-->", GetCommentWithLayout(post));
