@@ -5,6 +5,27 @@ namespace WimyBlog
 {
     public class Markdown2Html
     {
+        public static bool HasConvertableEnvironment()
+        {
+            try
+            {
+                Process process = new Process();
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.CreateNoWindow = true;
+                startInfo.FileName = "pandoc.exe";
+                startInfo.Arguments = "--help";
+                process.StartInfo = startInfo;
+                process.Start();
+                process.WaitForExit();
+
+                return true;
+            } catch (System.ComponentModel.Win32Exception)
+            {
+                // Cannot find pandoc.exe in PATH
+            }
+            return false;
+        }
+
         public static string Convert(string content)
         {
             string temp_filename = Path.GetTempFileName();

@@ -20,6 +20,12 @@ namespace WimyBlogTest
         }
 
         [TestMethod]
+        public void TestConvertableEnvironment()
+        {
+            Assert.IsTrue(Markdown2Html.HasConvertableEnvironment());
+        }
+
+        [TestMethod]
         public void TestExistTestSource()
         {
             string post_directory_name = Path.Combine(test_source_directory_name_, "post", "1");
