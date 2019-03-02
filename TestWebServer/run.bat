@@ -1,1 +1,1 @@
-dotnet run "E:\git\test_web"
+dotnet run "C:\git\blog.wimy.com"

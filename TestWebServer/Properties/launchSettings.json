@@ -9,14 +9,16 @@
   },
   "profiles": {
     "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
+      "commandName": "Project",
+      "commandLineArgs": "C:\\git\\blog.wimy.com",
+      "workingDirectory": "C:\\git\\WimyBlog",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "TestWebServer": {
       "commandName": "Project",
+      "commandLineArgs": "C:\\git\\blog.wimy.com",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
