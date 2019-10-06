@@ -8,11 +8,6 @@ namespace WimyBlog
     {
         static void Main(string[] args)
         {
-            if (Markdown2Html.HasConvertableEnvironment() == false)
-            {
-                Console.WriteLine("Cannot find pandoc.exe in PATH");
-                return;
-            }
             string target_directory_name = ".";
             if (args.Length > 0)
             {

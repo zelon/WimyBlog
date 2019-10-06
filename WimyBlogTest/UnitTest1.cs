@@ -20,12 +20,6 @@ namespace WimyBlogTest
         }
 
         [TestMethod]
-        public void TestConvertableEnvironment()
-        {
-            Assert.IsTrue(Markdown2Html.HasConvertableEnvironment());
-        }
-
-        [TestMethod]
         public void TestExistTestSource()
         {
             string post_directory_name = Path.Combine(test_source_directory_name_, "post", "1");
@@ -44,7 +38,7 @@ namespace WimyBlogTest
 
             Assert.AreEqual(1, post.Id);
             Assert.AreEqual("Test 타이틀", post.Title);
-            Assert.AreEqual("<p>Test 테스트</p>", post.HtmlContent);
+            Assert.AreEqual("<p>Test 테스트</p>\n", post.HtmlContent);
             Assert.AreEqual(DateTime.Parse("2017-06-07 23:25:05").ToBinary(), post.CreatedLocalTime.ToBinary());
         }
     }

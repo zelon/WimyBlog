@@ -9,13 +9,13 @@ namespace WimyBlogTest
         [TestMethod]
         public void TestBold()
         {
-            Assert.AreEqual("<p><strong>test bold</strong></p>", Markdown2Html.Convert("**test bold**"));
+            Assert.AreEqual("<p><strong>test bold</strong></p>\n", Markdown2Html.Convert("**test bold**"));
         }
 
         [TestMethod]
         public void TestEndLine()
         {
-            Assert.AreEqual("<p>a<br />\r\nb</p>", Markdown2Html.Convert("a\nb"));
+            Assert.AreEqual("<p>a<br />\nb</p>\n", Markdown2Html.Convert("a\nb"));
         }
     }
 }
