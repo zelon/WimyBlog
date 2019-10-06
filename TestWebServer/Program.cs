@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace TestWebServer
 {
@@ -19,16 +20,11 @@ namespace TestWebServer
             string web_root_path = args[0];
             Console.WriteLine("Web root path: {0}", web_root_path);
 
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseWebRoot(web_root_path)
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .UseApplicationInsights()
-                .Build();
-
-            host.Run();
+            Host.CreateDefaultBuilder().ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseWebRoot(web_root_path)
+                    .UseStartup<Startup>();
+            }).Build().Run();            
         }
     }
 }
