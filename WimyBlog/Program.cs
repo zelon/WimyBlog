@@ -16,23 +16,35 @@ namespace WimyBlog
             Console.WriteLine("TargetDirectory: {0}", target_directory_name);
 
             Config config = Config.Parse(Path.Combine(target_directory_name, "config.xml"));
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
             PostCollector post_collector = new PostCollector(config);
-            Console.WriteLine("Collecting posts...");
+            Console.Write("Collecting posts...");
+            stopwatch.Start();
             List<Post> posts = post_collector.Collect();
+            Console.WriteLine($" DONE -> collected count: {posts.Count},elapsed milliseconds: {stopwatch.ElapsedMilliseconds}");
+
             ValidatePosts(posts);
 
-            Console.WriteLine("Exporting index.html files...");
+            Console.Write("Exporting index.html files...");
+            stopwatch.Restart();
             new HtmlExporter(posts, config).Export();
+            Console.WriteLine($" DONE -> elapsed milliseconds: {stopwatch.ElapsedMilliseconds}");
 
-            Console.WriteLine("Exporting page lists...");
+            Console.Write("Exporting page lists...");
+            stopwatch.Restart();
             new PageListExporter(posts, config).Export();
+            Console.WriteLine($" DONE -> elapsed milliseconds: {stopwatch.ElapsedMilliseconds}");
 
-            Console.WriteLine("Exporting front page...");
+            Console.Write("Exporting front page...");
+            stopwatch.Restart();
             new FrontPageExporter(posts, config).Export();
+            Console.WriteLine($" DONE -> elapsed milliseconds: {stopwatch.ElapsedMilliseconds}");
 
-            Console.WriteLine("Exporting rss...");
+            Console.Write("Exporting rss...");
+            stopwatch.Restart();
             new RssExporter(posts, config).Export();
+            Console.WriteLine($" DONE -> elapsed milliseconds: {stopwatch.ElapsedMilliseconds}");
 
             Console.WriteLine("Completed");
         }

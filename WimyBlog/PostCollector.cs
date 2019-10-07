@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
 namespace WimyBlog
@@ -16,9 +17,10 @@ namespace WimyBlog
 
         public List<Post> Collect()
         {
-            List<Post> posts = new List<Post>();
             var directory_enumerator = Directory.EnumerateDirectories(config_.PostDirectory);
             int error_count = 0;
+
+            ConcurrentQueue<Post> collectingPosts = new ConcurrentQueue<Post>();
             Parallel.ForEach(directory_enumerator, (string directory) =>
             {
                 try
@@ -27,7 +29,7 @@ namespace WimyBlog
                     var name = Path.GetFileName(directory);
                     if (IsNumeric(name))
                     {
-                        posts.Add(Post.Convert(full_path, config_));
+                        collectingPosts.Enqueue(Post.Convert(full_path, config_));
                     }
                 } catch (MetadataReader.MetadataReaderException exception)
                 {
@@ -40,7 +42,11 @@ namespace WimyBlog
             {
                 Environment.Exit(1);
             }
-
+            List<Post> posts = new List<Post>();
+            foreach (var collectedPost in collectingPosts)
+            {
+                posts.Add(collectedPost);
+            }
             posts.Sort((Post left, Post right) => right.Id.CompareTo(left.Id));
 
             return posts;

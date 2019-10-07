@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace WimyBlog
 {
@@ -16,14 +17,12 @@ namespace WimyBlog
 
         public void Export()
         {
-            foreach (var post in posts_)
+            Parallel.ForEach(posts_, (Post post) =>
             {
                 string filename = Path.Combine(config_.PostDirectory, post.Id.ToString(), "index.html");
-                using (var stream = File.CreateText(filename))
-                {
-                    stream.Write(GetHtmlWithLayout(post));
-                }
-            }
+                using var stream = File.CreateText(filename);
+                stream.Write(GetHtmlWithLayout(post));
+             });
         }
 
         private string GetHtmlWithLayout(Post post)
