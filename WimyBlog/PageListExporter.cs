@@ -67,19 +67,32 @@ namespace WimyBlog
                 body += System.Environment.NewLine;
             }
 
+            body += GetPageLinkHtml(current_page_count, total_page_count);
+
+            string output = config_.Layout;
+
+            output = output.Replace("<!--wimyblog:post_title-->", $"page {current_page_count}");
+            output = output.Replace("<!--wimyblog:content-->", body);
+
+            return output;
+        }
+
+        public static string GetPageLinkHtml(int currentPageCount, int totalPageCount)
+        {
+            string body = "";
             body += "<p align='center'>";
-            if (current_page_count > 1)
+            if (currentPageCount > 1)
             {
-                body += string.Format("<a href='../{0}'>&lt;&lt;</a>", current_page_count - 1);
+                body += string.Format("<a href='/page/{0}'>&lt;&lt;</a>", currentPageCount - 1);
             }
             else
             {
                 body += string.Format("&lt;&lt;");
             }
             body += "&nbsp;&nbsp;&nbsp;&nbsp;";
-            if (current_page_count < total_page_count)
+            if (currentPageCount < totalPageCount)
             {
-                body += string.Format("<a href='../{0}'>&gt;&gt;</a>", current_page_count + 1);
+                body += string.Format("<a href='/page/{0}'>&gt;&gt;</a>", currentPageCount + 1);
             }
             else
             {
@@ -87,13 +100,7 @@ namespace WimyBlog
             }
             body += "</p>";
 
-            string output = config_.Layout;
-
-            output = output.Replace("<!--wimyblog:title-->",
-                                    string.Format("<a href=\".\">{0}</a>", current_page_count));
-            output = output.Replace("<!--wimyblog:content-->", body);
-
-            return output;
+            return body;
         }
     }
 }
