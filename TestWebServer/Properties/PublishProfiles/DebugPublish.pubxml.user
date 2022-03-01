@@ -6,6 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\git\WimyBlog\TestWebServer\bin\Debug\netcoreapp3.1\publish\</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\git\WimyBlog\TestWebServer\bin\DebugPublish</_PublishTargetUrl>
+    <History>True|2022-03-01T02:12:29.4360054Z;True|2022-03-01T11:11:30.6776369+09:00;</History>
   </PropertyGroup>
 </Project>
